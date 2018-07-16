@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Number Facts</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
+</head>
+<style>
+        body {
+        margin: 0;
+        padding: 0;
+        background-image: url('pic.jpg');
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        height: 90vh;
+    }
+    .main {
+        width: 700px;
+        height: 500px;
+        border-radius: 20px;
+        margin-top: 70px;
+    }
+    .display{
+        font-size: 27px;
+    }
+    h1{
+        font-family: Quicksand;
+        font-size: 55px;
+    }
+    p{
+         font-family: Quicksand;
+        font-size: 20px;
+    }
+    #pwd{
+        width: 450px;
+        margin-left: 20px;
+    }
+
+</style>
+
+<body>
+    <div class="container bg-primary text-white main">
+        <h1 class="pl-3 pt-4">Number Facts</h1>
+        <p class="pl-3">Enter a number and find the fact of that number</p>
+        <br>
+        <input type="number" class="form-control" id="pwd" placeholder="Enter a number..">
+        <br>
+        <div class="display pl-3 pr-3 pt-1" id="display">
+            
+        </div>
+    </div>
+    <script>
+        var number = document.getElementById('pwd');
+        number.addEventListener('input', getData);
+
+        function getData() {
+            var num = number.value;
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', 'http://numbersapi.com/'+num , true);
+            
+            xhr.onload = function(){
+                if(this.status == 200 && num != ''){
+                    document.getElementById('display').innerHTML = this.responseText;
+                }
+            }
+            xhr.send();
+        }
+
+    </script>
+</body>
+
+</html>
